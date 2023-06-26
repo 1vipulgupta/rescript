@@ -1,0 +1,14 @@
+rescript = 1
+g_finger := /Users/vipulgupta/rescript/node_modules/@rescript/core/lib/ocaml/install.stamp
+rule astj
+  command = /Users/vipulgupta/rescript/node_modules/rescript/darwin/bsc.exe  -bs-v 10.1.4 -open RescriptCore -absname -bs-ast -o $out $i
+o src/main.ast : astj ../../src/main.res
+rule deps
+  command = /Users/vipulgupta/rescript/node_modules/rescript/darwin/bsb_helper.exe -hash 30e70b599008ef2466990ab68a68adcd $in
+  restat = 1
+o src/main.d : deps src/main.ast
+rule mij
+  command = /Users/vipulgupta/rescript/node_modules/rescript/darwin/bsc.exe -I src -I /Users/vipulgupta/rescript/node_modules/@rescript/core/lib/ocaml -open RescriptCore  -bs-package-name rescript-project-template -bs-package-output commonjs:lib/js/$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/main.cmj src/main.cmi ../js/src/main.bs.js : mij src/main.ast

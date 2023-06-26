@@ -1,0 +1,18 @@
+{
+  "name": "rescript",
+  "version": "1.0.0",
+  "description": "Hello Rescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "res:build": "rescript",
+    "res:clean": "rescript clean",
+    "res:dev": "rescript build -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rescript/core": "^0.3.1",
+    "rescript": "^10.1.4"
+  }
+}
